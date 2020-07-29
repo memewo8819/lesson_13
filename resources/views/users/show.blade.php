@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="d-inline-flex">
                     <div class="p-3 d-flex flex-column">
-                        <img src="{{ $user->profile_image }}" class="rounded-circle" width="100" height="100">
+                        <img src="{{ asset('storage/profile_image/' .$user->profile_image) }}" class="rounded-circle" width="100" height="100">
                         <div class="mt-3 d-flex flex-column">
                             <h4 class="mb-0 font-weight-bold">{{ $user->name }}</h4>
                             <span class="text-secondary">{{ $user->screen_name }}</span>
@@ -22,7 +22,7 @@
                                 @else
                                     @if($is_following)
                                         <form
-                                            action="{{ route('unfollow', ['id' => $user->id]) }}"
+                                            action="{{ route('unfollow', ['user_id' => $user->id]) }}"
                                             method="POST">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
@@ -31,7 +31,7 @@
                                         </form>
                                     @else
                                         <form
-                                            action="{{ route('follow', ['id' => $user->id]) }}"
+                                            action="{{ route('follow', ['user_id' => $user->id]) }}"
                                             method="POST">
                                             {{ csrf_field() }}
 
@@ -68,7 +68,7 @@
                 <div class="col-md-8 mb-3">
                     <div class="card">
                         <div class="card-haeder p-3 w-100 d-flex">
-                            <img src="{{ $user->profile_image }}" class="rounded-circle" width="50" height="50">
+                            <img src="{{ asset('storage/profile_image/' .$user->profile_image) }}" class="rounded-circle" width="50" height="50">
                             <div class="ml-2 d-flex flex-column flex-grow-1">
                                 <p class="mb-0">{{ $timeline->user->name }}</p>
                                 <a href="{{ url('users/' .$timeline->user->id) }}"
